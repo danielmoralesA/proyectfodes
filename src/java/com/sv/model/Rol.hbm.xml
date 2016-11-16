@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-13-2016 06:54:25 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.sv.model.Rol" table="Rol" catalog="ProyectoFODES" optimistic-lock="version">
+        <id name="idRol" type="java.lang.Integer">
+            <column name="idRol" />
+            <generator class="identity" />
+        </id>
+        <property name="rolcol" type="string">
+            <column name="Rolcol" length="45" />
+        </property>
+        <set name="usuarioses" table="Usuarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Rol_idRol" not-null="true" />
+            </key>
+            <one-to-many class="com.sv.model.Usuarios" />
+        </set>
+    </class>
+</hibernate-mapping>

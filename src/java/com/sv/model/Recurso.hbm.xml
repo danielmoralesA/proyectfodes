@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-13-2016 06:54:25 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.sv.model.Recurso" table="Recurso" catalog="ProyectoFODES" optimistic-lock="version">
+        <id name="idRecurso" type="int">
+            <column name="idRecurso" />
+            <generator class="assigned" />
+        </id>
+        <property name="tipo" type="string">
+            <column name="tipo" length="45" />
+        </property>
+        <property name="precio" type="java.lang.Float">
+            <column name="precio" precision="12" scale="0" />
+        </property>
+        <set name="actividadeses" table="Actividades" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Recurso_idRecurso" not-null="true" />
+            </key>
+            <one-to-many class="com.sv.model.Actividades" />
+        </set>
+    </class>
+</hibernate-mapping>

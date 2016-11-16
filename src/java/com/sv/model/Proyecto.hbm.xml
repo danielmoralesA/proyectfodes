@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-13-2016 06:54:25 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.sv.model.Proyecto" table="Proyecto" catalog="ProyectoFODES" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="undidadEjecutora" class="com.sv.model.UndidadEjecutora" fetch="select">
+            <column name="Undidad_Ejecutora_idUndidad_Ejecutora" length="2" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="250" />
+        </property>
+        <property name="comoRealizar" type="string">
+            <column name="como_realizar" length="45" />
+        </property>
+        <property name="fechaInicio" type="date">
+            <column name="fecha_inicio" length="10" />
+        </property>
+        <property name="fechaFin" type="date">
+            <column name="fecha_fin" length="10" />
+        </property>
+        <property name="ubicacion" type="string">
+            <column name="ubicacion" length="45" />
+        </property>
+        <property name="propocito" type="string">
+            <column name="propocito" length="45" />
+        </property>
+        <property name="presupuesto" type="java.lang.Float">
+            <column name="presupuesto" precision="12" scale="0" />
+        </property>
+        <property name="cantidadUsada" type="java.lang.Float">
+            <column name="cantidad_usada" precision="12" scale="0" />
+        </property>
+        <set name="informeses" table="Informes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Proyecto_id" not-null="true" />
+            </key>
+            <one-to-many class="com.sv.model.Informes" />
+        </set>
+        <set name="actividadeses" table="Actividades" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Proyecto_id" not-null="true" />
+            </key>
+            <one-to-many class="com.sv.model.Actividades" />
+        </set>
+    </class>
+</hibernate-mapping>
